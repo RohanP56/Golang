@@ -5,7 +5,7 @@ import "fmt"
 func checkAge(age int) {
 	if age >= 18 {
 		fmt.Println("Person is: Adult")
-	} else if age <= 18 { // we have to write else if or else, where "if" has ended, if we wite in nextLine it will throws an error
+	} else if age <= 18 && age > 5 { // we have to write else if or else, where "if" has ended, if we wite in nextLine it will throws an error
 		fmt.Println("Person is: Under Age")
 	} else {
 		fmt.Println("Person is: Senior")
@@ -13,6 +13,6 @@ func checkAge(age int) {
 }
 
 func main() {
-	age := 17
+	age := 2
 	checkAge(age)
 }
