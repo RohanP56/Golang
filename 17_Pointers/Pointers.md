@@ -1,5 +1,22 @@
 # Pointers
 - Pointer save address of variable or save memory location of variables.
+- To access value use **'*'**
+- To access address use **'&'**
+
+``` Go
+var n int
+	n = 10
+
+	var ptr *int // create a pointer (int) defines the data which store in "ptr" address, that item is integer type
+	ptr = &n     // ptr = address of "n"
+
+	// [address of n == ptr] and [value of n = value inside ptr address]
+	fmt.Println("The value of n is:", n)
+	fmt.Println("The value of n is:", *ptr)
+	fmt.Println("The address of n is:", &n)
+	fmt.Println("The address of n is:", ptr)
+
+```
 - In golang when we pass any arguement to a function, then the arguement by value copy in parameter.
 - Means inside function, we get a copy of the arguement.
 - If we change the copy of value inside the function, source value remains same, means the value we pass it's unchnagable.
@@ -37,3 +54,4 @@ func main() {
 	fmt.Println("After chnageNum in main:", num)
 }
 ```
+

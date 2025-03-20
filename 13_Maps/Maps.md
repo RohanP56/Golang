@@ -1,13 +1,15 @@
 # Maps
-
-Similar as HashMap in java
+- Similar as HashMap in java
 
 ### Map Initialize:
 
 ```Go
 m := make(map[key_type]value_type) //value type should be outside of the []
             or
-m1 := map[string]int{"price": 100, "phones": 3}
+m1 := map[string]int{
+	"price": 100, 
+	"phones": 3
+}
 ```
 
 - **Add Element in Map:** `map_name[key] = value`
@@ -29,6 +31,13 @@ fmt.Println(m["India"])
 fmt.Println("Length of Map:", len(m))
 ```
 
+- **Loop Through map, this way we can also print map**
+``` Go
+for index, value := range m {
+	fmt.Printf("Key is %s and value is %s \n", index, value)
+}
+```
+
 - **Delete Element from Map:** `delete(map_name, key)`
 
 ```Go
@@ -43,7 +52,9 @@ clear(m)
 fmt.Println(m)
 ```
 
-- **Check map contains element or not:** 
+- **Check map contains key or not:** `val1, val2 := map[key]`
+	- **val1:** Value of the given key.
+	- **val2:** boolean value that indicates the item is present in map or not.
 
 ```Go
 val, ok := m["China"]

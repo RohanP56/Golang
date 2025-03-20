@@ -21,7 +21,7 @@ func infiniteLoop(i int) {
 	}
 }
 
-// for loop using for keyword
+// forloop using for keyword
 func forLoop(n int) {
 	for i := 0; i <= n; i++ {
 		fmt.Print(i, " ")
@@ -36,11 +36,21 @@ func forLoopUsingRange(n int) {
 	}
 }
 
+// function to print all character in side a String
+func stringChar() {
+	str := "Hello World"
+	fmt.Println("Length of given String: ", len(str))
+	for i, ch := range str {
+		fmt.Printf("At index %d Character is: %c\n", i, ch)
+	}
+}
+
 func main() {
 	/*whileLoop(1)
 	infiniteLoop(1)
-	forLoop(10)*/
-	forLoopUsingRange(10)
+	forLoop(10)
+	forLoopUsingRange(10)*/
+	stringChar()
 
 }
 

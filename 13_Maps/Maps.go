@@ -26,16 +26,21 @@ func main() {
 	//Printing full map with key and value
 	fmt.Println("Map with make function:", m)
 
+	//loop through map
+	for index, value := range m {
+		fmt.Printf("Key is %s and value is %s \n", index, value)
+	}
+
 	//length of map or how may item exists in map
 	fmt.Println("Length of Map m:", len(m))
 
-	// Delete any elemet from map
+	// Delete any element from map
 	delete(m, "India")
 	fmt.Println(m)
 
-	//check any item is present on map or not
-	val, ok := m["China"]
-	fmt.Println(val) // it will print it's key value
+	//check any key is present on map or not
+	val, ok := m["China"] // it returns items value and a boolean value
+	fmt.Println(val)      // it will print it's key value
 	//_, ok := m["China"]  if we want we can skip it
 	if ok {
 		fmt.Println("Exists")
@@ -47,7 +52,7 @@ func main() {
 	clear(m)
 	fmt.Println(m)
 
-	// Equality Ceck for map
+	// Equality Check for map
 	m3 := map[string]int{"price": 10000, "Samsung": 3}
 	m4 := map[string]int{"price": 40000, "Apple": 3}
 
