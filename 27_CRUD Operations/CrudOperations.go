@@ -78,8 +78,8 @@ func postRequest() {
 	// Convert JSON in String
 	jsonString := string(jsonData)
 
-	//Convert String into Reader
-	JsonReader := strings.NewReader(jsonString) // data is ready to post
+	//Convert String into Reader because, (http.Post()) Metod expects a reader interface.
+	JsonReader := strings.NewReader(jsonString)
 
 	// Posting the data
 	res, err := http.Post(myURL, "application/json", JsonReader)
@@ -101,7 +101,98 @@ func postRequest() {
 	fmt.Println("Response Data:", string(data)) // response data
 }
 
+// UPDATE Request
+func updateRequest() {
+	// URL for Posting Data
+	myURL := "https://jsonplaceholder.typicode.com/todos/5"
+
+	// Creating Data
+	todo := Todo{
+		UserID:    10,
+		Id:        5,
+		Title:     "Top Gun",
+		Completed: false,
+	}
+
+	// Convert todo Structure in JSON
+	jsonData, err := json.Marshal(todo)
+	if err != nil {
+		fmt.Println("Error in Marshalling:", err)
+		return
+	}
+
+	// Convert JSON in String
+	jsonString := string(jsonData)
+
+	//Convert String into Reader because, (http.Post()) Metod expects a reader interface.
+	jsonReader := strings.NewReader(jsonString)
+
+	// Create PUT Request
+	//http.NewRequest(http.MethodPut, myURL, jsonReader)
+	req, err := http.NewRequest("PUT", myURL, jsonReader)
+	if err != nil {
+		fmt.Println("Error occur while put requesting:", err)
+		return
+	}
+	req.Header.Set("Content-type", "application/json") // Request is ready
+
+	//create Client
+	client := http.Client{}
+
+	//send the request
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error sending request:", err)
+		return
+	}
+
+	// close response Body
+	defer res.Body.Close()
+
+	// After posting data Response Status
+	fmt.Println("Response Status:", res.Status)
+
+	//convert the response in redable format
+	data, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println("Error while converting the response in redable format:", err)
+		return
+	}
+	fmt.Println("Response Data:", string(data)) // response data
+
+}
+
+// DELETE Request
+func deleteRequest() {
+	// URL for Deleting Data
+	myURL := "https://jsonplaceholder.typicode.com/todos/3"
+
+	//Create Delete request
+	req, err := http.NewRequest(http.MethodDelete, myURL, nil) // here we don't have to send any data so "nil"
+	if err != nil {
+		fmt.Println("Error creating DELETE Request: ", err)
+	}
+
+	//create Client
+	client := http.Client{}
+
+	//send the request
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Error sending request:", err)
+		return
+	}
+
+	// close response Body
+	defer res.Body.Close()
+
+	// After posting data Response Status
+	fmt.Println("Response Status:", res.Status)
+}
+
 func main() {
 	//getRequest()
-	postRequest()
+	//postRequest()
+	//updateRequest()
+	deleteRequest()
 }
